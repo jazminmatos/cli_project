@@ -1,0 +1,5 @@
+#!usr/bin/env ruby
+
+require_relative '../environment'
+
+puts "Hi, I'm in bin/start"

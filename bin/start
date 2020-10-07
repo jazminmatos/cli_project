@@ -2,4 +2,5 @@
 
 require_relative '../environment'
 
-puts "Hi, I'm in bin/start"
+a = CLI.new
+a.start

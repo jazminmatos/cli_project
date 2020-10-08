@@ -9,5 +9,5 @@
 #save all objects created
 
 class Pokemon
-
+    attr_accessor :name, :list_order
 end

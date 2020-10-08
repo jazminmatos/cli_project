@@ -6,7 +6,15 @@ class API
         uri = URI.parse(url)
         response = Net::HTTP.get(uri)
         pokemon_list = JSON.parse(response)["results"] #why "results", why doesn't [3] work?
-        #binding.pry
+        
+        pokemon_list.each_with_index do |p, n|
+            a = Pokemon.new
+            a.name = p["name"]
+            a.list_order = n + 1
+
+            puts "#{a.list_order}. #{a.name}"
+            #binding.pry
+        end
     end
 
     def self.fetch_pokemon(pokemon)
@@ -14,7 +22,7 @@ class API
         uri = URI.parse(url)
         response = Net::HTTP.get(uri)
         y = JSON.parse(response)
-        #binding.pry
+        
     end
 end
 

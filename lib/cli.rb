@@ -16,12 +16,23 @@ class CLI
         puts "Would you like to see a list of the original Pokemon? Write y/n."
         puts ""
         input = gets.chomp.downcase
+        puts ""
         
         case input 
             when "y" 
                 API.pokemon_info
-            when "no"
+            when "n"
                 exit
+        end
+
+        puts "Would you like to learn more about a specific Pokemon? Input a Pokemon's name or number. If not, input exit." #haven't decided which one to use yet. Can I do both?
+        pokemon_input = gets.chomp.downcase
+        puts ""
+        
+        if pokemon_input = "exit"
+            exit
+        else
+            API.fetch_pokemon(pokemon_input)
         end
     end
 end

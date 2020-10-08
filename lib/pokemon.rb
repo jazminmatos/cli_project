@@ -9,12 +9,13 @@
 #save all objects created
 
 class Pokemon
-    attr_accessor :name, :list_order
+    attr_accessor :name, :list_order, :abilities
     @@all = []
 
-    def initialize(name:, list_order:)
+    def initialize(name:, list_order:, abilities:)
         @name = name
         @list_order = list_order
+        @abilities = abilities
         @@all << self
     end
 

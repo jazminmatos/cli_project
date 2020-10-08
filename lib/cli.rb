@@ -26,18 +26,25 @@ class CLI
             pokemon_objects = Pokemon.all
             list_pokemon(pokemon_objects)
 
-            puts "Would you like to learn more about a specific Pokemon? Input a Pokemon's number. If not, type exit."
+            puts "Would you like to learn more about a specific Pokemon? Type a Pokemon's number. If not, type exit."
             puts ""
             pokemon_input = gets.chomp.downcase.to_i
             puts ""
-            
-            if pokemon_input > 0 && pokemon_input < 152
+
+            while pokemon_input != "exit" do
                 API.pokemon_ability(pokemon_input)
-            elsif pokemon_input < 0 || pokemon_input > 151
-                puts "Please enter a number between 1 and 151."
-            else pokemon_input == "exit"
-                exit
+                break
             end
+
+
+            
+            # if pokemon_input > 0 && pokemon_input < 152
+            #     API.pokemon_ability(pokemon_input)
+            # elsif pokemon_input < 0 || pokemon_input > 151
+            #     puts "Please enter a number between 1 and 151."
+            # else pokemon_input == "exit"
+            #     exit
+            # end
 
         elsif input == "n"
             exit

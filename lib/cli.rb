@@ -13,10 +13,15 @@ class CLI
         puts ""
         puts "Welcome to the Pokemon Database!"
         puts ""
-        puts "Search for Pokemon by entering a Pokemon's name"
+        puts "Would you like to see a list of the original Pokemon? Write y/n."
         puts ""
-        @pokemon = gets.chomp.downcase
-        puts ""
-        API.pokemon_info(@pokemon)
+        input = gets.chomp.downcase
+        
+        case input 
+            when "y" 
+                API.pokemon_info
+            when "no"
+                exit
+        end
     end
 end

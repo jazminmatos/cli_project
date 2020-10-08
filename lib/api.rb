@@ -1,8 +1,20 @@
 #handle all of our API requests (sending GET requests)
 
 class API
-    def self.pokemon_info(pokemon)
+    def self.pokemon_info
+        url = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151"
+        uri = URI.parse(url)
+        response = Net::HTTP.get(uri)
+        pokemon_list = JSON.parse(response)["results"] #why "results", why doesn't [3] work?
+        #binding.pry
+    end
 
+    def self.fetch_pokemon(pokemon)
+        url = "https://pokeapi.co/api/v2/pokemon/#{pokemon}" # or number???
+        uri = URI.parse(url)
+        response = Net::HTTP.get(uri)
+        y = JSON.parse(response)
+        #binding.pry
     end
 end
 

@@ -8,34 +8,24 @@ class API
         pokemon_list = JSON.parse(response)["results"] #why "results", why doesn't [3] work?
         
         pokemon_list.each_with_index do |p, n|
-            a = Pokemon.new
-            a.name = p["name"]
-            a.list_order = n + 1
-
-            puts "#{a.list_order}. #{a.name}"
+            Pokemon.new(name: p["name"].capitalize, list_order: n + 1)
         end
     end
 
-    #if input is a number
-    def self.fetch_pokemon(num) #list number
+    def self.pokemon_ability(num) #list number
         url = "https://pokeapi.co/api/v2/pokemon/#{num}"
         uri = URI.parse(url)
         response = Net::HTTP.get(uri)
         pokemon_abilities = JSON.parse(response)["abilities"]
 
-        pokemon_abilities.collect {|a| a["ability"]["name"]} #is it possible to NOT hardcode "ability" & "name"???
-        #need to figure out why I can't get access to y[0]???
-        binding.pry
-    end
+        puts "Abilities:"
+        pokemon_abilities.collect do |a| 
+            ability = a["ability"]["name"].capitalize
 
-    #if input is a pokemon name
-    # def self.fetch_pokemon(pokemon)
-    #     url = "https://pokeapi.co/api/v2/pokemon/#{pokemon}" # or number???
-    #     uri = URI.parse(url)
-    #     response = Net::HTTP.get(uri)
-    #     y = JSON.parse(response)
-        
-    # end
+            puts "#{ability}"
+            #want to list ability description as well
+        end
+    end
 end
 
 # list of 20 pokemon: https://pokeapi.co/api/v2/pokemon/ (paginated page)
@@ -44,3 +34,5 @@ end
 #Ask user to select a number to learn more a pokemon's abilities and 
     # Retrieve pokemon info: https://pokeapi.co/api/v2/pokemon/{id or name}/
         # abilities (I think all of them have 2 listed abilities), base_experience, forms, stats, types?, weights
+        #ability information: https://pokeapi.co/api/v2/ability/{name of ability}
+            #within "effect_entries" => "short_effect"

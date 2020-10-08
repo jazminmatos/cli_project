@@ -10,4 +10,15 @@
 
 class Pokemon
     attr_accessor :name, :list_order
+    @@all = []
+
+    def initialize(name:, list_order:)
+        @name = name
+        @list_order = list_order
+        @@all << self
+    end
+
+    def self.all
+        @@all
+    end
 end

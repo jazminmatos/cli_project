@@ -18,6 +18,8 @@ class CLI
         input = gets.chomp.downcase
         puts ""
         
+        #NEED TO ADD WHAT HAPPENS IF INPUT != "y" OR "n"
+        #puts please put "y" or "n", or else I can't give you pokemon info :(
         case input 
             when "y" 
                 API.pokemon_info
@@ -26,13 +28,21 @@ class CLI
         end
 
         puts "Would you like to learn more about a specific Pokemon? Input a Pokemon's name or number. If not, input exit." #haven't decided which one to use yet. Can I do both?
-        pokemon_input = gets.chomp.downcase
+        pokemon_input = gets.chomp.downcase.to_i
         puts ""
         
-        if pokemon_input = "exit"
-            exit
-        else
+        if pokemon_input > 0 && pokemon_input < 152
             API.fetch_pokemon(pokemon_input)
+        elsif pokemon_input < 0 || pokemon_input > 151
+            puts "Please enter a number between 1 and 151."
+        else pokemon_input == "exit"
+            exit
         end
+
+        # if pokemon_input = "exit"
+        #     exit
+        # else
+        #     API.fetch_pokemon(pokemon_input)
+        # end
     end
 end

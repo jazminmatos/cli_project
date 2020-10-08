@@ -21,6 +21,10 @@ class API
         end
     end
 
+    #if code above isn't good enough:
+    #method
+    #iterate over Pokemon.all to add abilities to ability attribute OR is the below enough? Is it necessary to create an attribute called abilities?
+
     #need to figure out how to have abilities as an attribute for each pokemon object
     #need to refactor it to list abilities of each Pokemon object (assuming the above is correct, will have to put this method in CLI I think)
     def self.pokemon_ability(num) #list number

@@ -1,6 +1,6 @@
-# cli_project
+# Original Pokemon Directory
 
-CLI_project allows you to see a list of the original 151 Pokemon as well as their abilities.
+Welcome to the Original Pokemon Directory! This directory allows you to see a list of the original 151 Pokemon as well as their abilities. All information is pulled from the [PokéAPI](https://pokeapi.co/docs/v2#info).
 
 ## Install Instructions
 

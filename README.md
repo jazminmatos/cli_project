@@ -12,4 +12,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT)
+This is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

@@ -3,7 +3,7 @@
 #saves all pokemon created
 
 class Pokemon
-    attr_accessor :name, :url, :list_order, :abilities
+    attr_accessor :name, :url, :abilities
     @@all = []
 
     def initialize(name:, url:)
@@ -16,9 +16,4 @@ class Pokemon
     def self.all
         @@all
     end
-
-    # def self.find_by_ability(ability)
-    #      @@all.select {|i| i.abilities.include?(ability.capitalize)}
-    #      #binding.pry
-    # end
 end

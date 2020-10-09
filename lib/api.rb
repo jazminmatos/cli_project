@@ -27,6 +27,19 @@ class API
         end
         #binding.pry
     end
+
+    #iterate over pokemon.all to add abilities into pokemon objects' abilities attributes
+    # def self.p_ability
+    #     Pokemon.all.each do |p|
+    #         uri = URI(p.url)
+    #         response = Net::HTTP.get(uri)
+    #         pokemon_abilities = JSON.parse(response)["abilities"] #array of hashes of Pokemon abilities & their url that has info on the relative ability
+        
+    #         pokemon_abilities.collect do |a| 
+    #             p.abilities << a["ability"]["name"].capitalize #shovels capitalized names of abilities into the abilities attributes of pokemon objects
+    #         end
+    #     end
+    # end
 end
 
 # list of 20 pokemon: https://pokeapi.co/api/v2/pokemon/ (paginated page)

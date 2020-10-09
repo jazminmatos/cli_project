@@ -16,4 +16,9 @@ class Pokemon
     def self.all
         @@all
     end
+
+    # def self.find_by_ability(ability)
+    #      @@all.select {|i| i.abilities.include?(ability.capitalize)}
+    #      #binding.pry
+    # end
 end

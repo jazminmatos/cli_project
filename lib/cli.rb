@@ -29,14 +29,19 @@ class CLI
             puts "Would you like to learn more about a specific Pokemon? Type a Pokemon's number. If not, type exit."
             puts ""
             pokemon_input = gets.chomp.downcase.to_i
+            pokemon = Pokemon.all[pokemon_input - 1]
             puts ""
 
             while pokemon_input != "exit" do
-                API.pokemon_ability(pokemon_input)
+                API.pokemon_ability(pokemon)
                 break
             end
 
-
+            #will need to add an ask for an input 
+            #need to create circular logic 
+            #need to make sure we're not making another request to an API
+            #check out second video
+            #Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same abilities
             
             # if pokemon_input > 0 && pokemon_input < 152
             #     API.pokemon_ability(pokemon_input)
@@ -60,8 +65,8 @@ class CLI
         puts ""
         puts "See below for the list of the original Pokemon!"
         puts ""
-        pk.each do |a|
-            puts "#{a.list_order}. #{a.name}"
+        pk.each.with_index(1) do |a, i|
+            puts "#{i}. #{a.name}"
         end
         puts ""
     end

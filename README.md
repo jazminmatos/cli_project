@@ -4,7 +4,7 @@ Welcome to the Original Pokemon Directory! This directory allows you to see a li
 
 ## Install Instructions
 
-There are none.
+Fork and clone repository from github and run 'ruby bin/start'.
 
 ## Contributing
 

@@ -1,46 +1,28 @@
 #handle all of our API requests (sending GET requests)
 
 class API
+    #gets list of pokemon and makes each entry a Pokemon object
     def self.pokemon_info
         url = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151"
         uri = URI.parse(url)
         response = Net::HTTP.get(uri)
-        pokemon_list = JSON.parse(response)["results"]
+        pokemon_list = JSON.parse(response)["results"] #pokemon_list = key/value pairs of "name" & "url"
         
-        pokemon_list.each do |p| #p: keys = "name", "url" + their values, n: index #
-            #Uses the value of the "url" key to get the ability names & instantiate an object w/ abilities as attributes below
-            #this makes it really slow - any way to make it faster?
+        pokemon_list.each do |p| #p = one hash of key/value pair of "name" & "url"
             url = p["url"]
-            # uri = URI.parse(url)
-            # response = Net::HTTP.get(uri)
-            # abilities = JSON.parse(response)["abilities"] #abilities[0]["ability"]["name"] will get you name of 1st ability - ["url"] instead of name will give you access to ability info
-
-            #ability_list = abilities.collect {|a| a["ability"]["name"].capitalize}
-
-            Pokemon.new(name: p["name"].capitalize, url: url) #list_order: n + 1, abilities: ability_list)
+            Pokemon.new(name: p["name"].capitalize, url: url) #Pokemon object instantiated w/ name & url attributes
         end
     end
 
-    #if code above isn't good enough:
-    #method
-    #iterate over Pokemon.all to add abilities to ability attribute OR is the below enough? Is it necessary to create an attribute called abilities?
-    #OR should abilities be a new class that has a 'belongs to'/'has many' relationship w/ Pokemon, then I could search by ability more easily
-
-    #need to figure out how to have abilities as an attribute for each pokemon object
-    #need to refactor it to list abilities of each Pokemon object (assuming the above is correct, will have to put this method in CLI I think)
-    def self.pokemon_ability(num) #pokemon object
-        binding.pry
-        #url = "https://pokeapi.co/api/v2/pokemon/#{num}"
+    #gets a pokemon's abilities and shovels it into the Pokemon object's "abilities" attributes
+    def self.pokemon_ability(num) #num = pokemon object that is passed in
         uri = URI(num.url)
         response = Net::HTTP.get(uri)
-        pokemon_abilities = JSON.parse(response)["abilities"]
+        pokemon_abilities = JSON.parse(response)["abilities"] #array of hashes of Pokemon abilities & their url that has info on the relative ability
 
-        #puts "Abilities:"   PUT THIS INTO YOUR CLI!!!
         pokemon_abilities.collect do |a| 
-            num.abilities << a["ability"]["name"].capitalize
-
-            #puts "#{ability}"   PUT THIS INTO YOUR CLI!!!
-            #want to list ability description as well
+            num.abilities << a["ability"]["name"].capitalize #shovels capitalized names of abilities into the abilities attributes of pokemon objects
+        
         end
     end
 end

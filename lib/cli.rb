@@ -10,6 +10,8 @@
 
 class CLI
     def start
+        API.pokemon_info #gets list of pokemon and makes each entry a Pokemon object
+    
         puts ""
         puts "Welcome to the Pokemon Database!"
         puts ""
@@ -19,7 +21,6 @@ class CLI
         puts ""
         
         if input == "y" 
-            API.pokemon_info #initializes new Pokemon objects (from pokemon.rb) using url get request (from api.rb)
             puts ""
 
             #display list of pokemon, calls on list_pokemon method below
@@ -29,19 +30,18 @@ class CLI
             puts "Would you like to learn more about a specific Pokemon? Type a Pokemon's number. If not, type exit."
             puts ""
             pokemon_input = gets.chomp.downcase.to_i
-            pokemon = Pokemon.all[pokemon_input - 1]
+            pokemon = Pokemon.all[pokemon_input - 1] #subtract 1 to get index number to access item in array
             puts ""
 
-            while pokemon_input != "exit" do
-                API.pokemon_ability(pokemon)
-                break
-            end
+            API.pokemon_ability(pokemon)
+            list_ability(pokemon)
+
 
             #will need to add an ask for an input 
             #need to create circular logic 
             #need to make sure we're not making another request to an API
             #check out second video
-            #Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same abilities
+            #Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same
             
             # if pokemon_input > 0 && pokemon_input < 152
             #     API.pokemon_ability(pokemon_input)
@@ -69,5 +69,12 @@ class CLI
             puts "#{i}. #{a.name}"
         end
         puts ""
+    end
+
+    def list_ability(pk)
+        puts ""
+        puts "Abilities:"
+        puts ""
+        puts pk.abilities
     end
 end

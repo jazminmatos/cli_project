@@ -1,12 +1,6 @@
-#RENAME THIS TO REFLECT PROJECT
-#RENAME relative path in environment.rb
-
-#instantiate new objects
-#controlling data to create new objects
-
-#keep track of our objects
-#turn our responses into objects
-#save all objects created
+#keep track of our pokemon
+#turns our responses into objects
+#saves all pokemon created
 
 class Pokemon
     attr_accessor :name, :url, :list_order, :abilities

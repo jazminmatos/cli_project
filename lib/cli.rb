@@ -1,12 +1,6 @@
 #interactions w/ user
 #contain all of our gets & puts
-#control the flow of our program
-
-#  REQUIREMENTS
-# Have a CLI for interfacing w/ the application
-# Pull data from an external source
-# Implement both list and detail views. The data provided must go at least one level deep.
-# The application = DRY
+#controls the flow of our program
 
 class CLI
     def start
@@ -27,31 +21,23 @@ class CLI
             pokemon_objects = Pokemon.all
             list_pokemon(pokemon_objects)
 
-            puts "Would you like to learn more about a specific Pokemon? Type a Pokemon's number. If not, type exit."
-            puts ""
-            pokemon_input = gets.chomp.downcase.to_i
-            pokemon = Pokemon.all[pokemon_input - 1] #subtract 1 to get index number to access item in array
-            puts ""
+            prompt
 
-            API.pokemon_ability(pokemon)
-            list_ability(pokemon)
-
-
-            #will need to add an ask for an input 
-            #need to create circular logic 
-            #need to make sure we're not making another request to an API
-            #check out second video
-            #Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same
-            
-            # if pokemon_input > 0 && pokemon_input < 152
-            #     API.pokemon_ability(pokemon_input)
-            # elsif pokemon_input < 0 || pokemon_input > 151
-            #     puts "Please enter a number between 1 and 151."
-            # else pokemon_input == "exit"
-            #     exit
-            # end
+            pokemon_input = gets.chomp.downcase
+            while pokemon_input != 'exit' do    
+                if pokemon_input == 'list'
+                    list_pokemon(Pokemon.all)
+                else pokemon_input.to_i == 1..151
+                    pokemon = Pokemon.all[pokemon_input.to_i - 1] #subtract 1 to get index number to access item in array
+                    API.pokemon_ability(pokemon)
+                    list_ability(pokemon)
+                end
+                prompt
+                pokemon_input = gets.chomp.downcase
+            end
 
         elsif input == "n"
+            puts "Goodbye :)"
             exit
         else
             puts "Jessie, James, and Meowth stole your information :(."
@@ -71,10 +57,34 @@ class CLI
         puts ""
     end
 
+    #method that lists abilities
     def list_ability(pk)
         puts ""
         puts "Abilities:"
         puts ""
         puts pk.abilities
+        puts ""
+        puts ""
+    end
+
+    def prompt
+        puts "Would you like to see a Pokemon's abilities? Type a listed number to see more details."
+        puts "OR type 'list' to see the list again."
+        puts "OR type 'exit' to exit"
+        puts ""
     end
 end
+
+#will need to add an ask for an input 
+#need to create circular logic 
+#need to make sure we're not making another request to an API
+#check out second video
+#Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same
+
+# if pokemon_input > 0 && pokemon_input < 152
+# API.pokemon_ability(pokemon_input)
+# elsif pokemon_input < 0 || pokemon_input > 151
+# puts "Please enter a number between 1 and 151."
+# else pokemon_input == "exit"
+# exit
+# end

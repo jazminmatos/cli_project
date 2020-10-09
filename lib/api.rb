@@ -12,7 +12,7 @@ class API
             url = p["url"]
             Pokemon.new(name: p["name"].capitalize, url: url) #Pokemon object instantiated w/ name & url attributes
         end
-        binding.pry
+        #binding.pry
     end
 
     #gets a pokemon's abilities and shovels it into the Pokemon object's "abilities" attributes
@@ -25,7 +25,7 @@ class API
             num.abilities << a["ability"]["name"].capitalize #shovels capitalized names of abilities into the abilities attributes of pokemon objects
         
         end
-        binding.pry
+        #binding.pry
     end
 end
 

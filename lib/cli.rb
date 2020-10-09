@@ -23,17 +23,19 @@ class CLI
 
             prompt
 
-            pokemon_input = gets.chomp.downcase
-            while pokemon_input != 'exit' do    
-                if pokemon_input == 'list'
+            p_input = gets.chomp.downcase
+            while p_input != 'exit' do    
+                if p_input == 'list'
                     list_pokemon(Pokemon.all)
-                else pokemon_input.to_i == 1..151
-                    pokemon = Pokemon.all[pokemon_input.to_i - 1] #subtract 1 to get index number to access item in array
+                elsif p_input.to_i > 0 && p_input.to_i <= pokemon_objects.length
+                    pokemon = Pokemon.all[p_input.to_i - 1] #subtract 1 to get index number to access item in array
                     API.pokemon_ability(pokemon)
                     list_ability(pokemon)
+                else 
+                    puts "Please put a number between 1-151."
                 end
                 prompt
-                pokemon_input = gets.chomp.downcase
+                p_input = gets.chomp.downcase
             end
 
         elsif input == "n"
@@ -64,10 +66,10 @@ class CLI
         puts ""
         puts pk.abilities
         puts ""
-        puts ""
     end
 
     def prompt
+        puts ""
         puts "Would you like to see a Pokemon's abilities? Type a listed number to see more details."
         puts "OR type 'list' to see the list again."
         puts "OR type 'exit' to exit"
@@ -75,16 +77,5 @@ class CLI
     end
 end
 
-#will need to add an ask for an input 
-#need to create circular logic 
 #need to make sure we're not making another request to an API
-#check out second video
 #Practice thinking about how to iterate over Pokemon.all and finding pokemon that have the same
-
-# if pokemon_input > 0 && pokemon_input < 152
-# API.pokemon_ability(pokemon_input)
-# elsif pokemon_input < 0 || pokemon_input > 151
-# puts "Please enter a number between 1 and 151."
-# else pokemon_input == "exit"
-# exit
-# end
